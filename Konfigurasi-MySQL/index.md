@@ -47,3 +47,5 @@ MySQL adalah sistem manajemen basis data relasional (RDBMS) yang banyak digunaka
 ### 3.	Lakukan instalasi database mysql dari awal sampai akhir. 
 4.	Pastikan dalam setiap tahapan instalasi, didokumentasikan dalam bentuk screenshot untuk  bahan Menyusun laporan 
 a.	Buka website MySQL lalu pilih menu downloads
+
+Rename folder Konfigurasi-MySQL
