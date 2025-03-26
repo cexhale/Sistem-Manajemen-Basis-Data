@@ -14,27 +14,40 @@ Dalam sistem basis data, manajemen pengguna (user), peran (role), dan hak akses 
 
 ### 1. Lakukan proses pembuatan username sebanyak jumlah kelompok Anda! Tuliskan script dan tampilkan hasilnya!
 
-- Proses pembuatan username ke dalam MySQL sebanyak 3 kali dengan menggunakan script sebagai berikut:
+-	Membuat tiga user baru dalam database MySQL dengan nama chalimatus, safira, dan sherli, masing-masing hanya dapat mengakses dari localhost.
+-	Code :
+  ```sql
+  CREATE USER 'chalimatus'@'localhost' IDENTIFIED BY 'chalimatus';
+  ```
+  ![Gambar 1](Gambar1.jpg)
+- Code :
+  ```sql
+  CREATE USER 'safira'@'localhost' IDENTIFIED BY 'safira';
+  ```
+  ![Gambar 2](Gambar2.jpg)
+- Code :
+  ```sql
+  CREATE USER 'sherli'@'localhost' IDENTIFIED BY 'sherli';
+  ```
+  ![Gambar 3](Gambar3.jpg)
+-	Menampilkan daftar user beserta host yang diizinkan untuk mengakses database.
+- Code :
+  ```sql
+  SELECT USER, HOST FROM mysql.user WHERE USER IN ('chalimatus', 'safira', 'sherli');
+  ```
+  ![Gambar 4](Gambar4.jpg)
 
-  -	Membuat tiga user baru dalam database MySQL dengan nama chalimatus, safira, dan sherli, masing-masing hanya dapat mengakses dari localhost.
-  -	Code :
-    ```sql
-    CREATE USER 'chalimatus'@'localhost' IDENTIFIED BY 'chalimatus';
-  -	Output run yaitu 1 querie, 1 succes tanpa adanya error.
-![Gambar 1](Gambar1.jpg)
-  - Code :
-   	```sql
-    CREATE USER 'safira'@'localhost' IDENTIFIED BY 'safira';
-  - Hasil run yaitu 1 querie, 1 succes tanpa adanya error.
-![Gambar 2](Gambar2.jpg)
-  - Code :
-    ```sql
-    CREATE USER 'sherli'@'localhost' IDENTIFIED BY 'sherli';
-  - Hasil run yaitu 1 querie, 1 succes tanpa adanya error.
-![Gambar 3](Gambar3.jpg)
-  -	Menampilkan daftar user beserta host yang diizinkan untuk mengakses database.
-  - Code :
-    ```sql
-    SELECT USER, HOST FROM mysql.user WHERE USER IN ('chalimatus', 'safira', 'sherli');
-  - Output menghasilkan 3 users dengan host yaitu localhost
-![Gambar 4](Gambar4.jpg)
+### 2. Lakukan penghapusan username terhadap user yang sudah dibuat. Tuliskan script dan tampilkan hasilnya
+
+- Menghapus user sherli dari MySQL
+- Code :
+  ```sql
+  DROP USER 'sherli'@'localhost';
+  ```
+  ![Gambar 5](Gambar5.jpg)
+- Mengecek kembali daftar user yang masih ada setelah penghapusan user sherli.
+- Code :
+  ```sql
+  SELECT USER, HOST FROM mysql.user WHERE USER IN ('chalimatus', 'safira', 'sherli');
+  ```
+  ![Gambar 6](Gambar6.jpg)
