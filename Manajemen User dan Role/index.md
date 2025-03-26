@@ -188,3 +188,18 @@ DESC LIMIT 10;
 Output ada beberapa kolom yaitu event_time : menampilan tanggal dan jam; user_host nya yaitu root, localhost serta kode; thread_id yaitu 8; server_id yaitu 1; command_type yaitu query; dan argument yaitu menyesuaikan yang kita insertkan beserta kode.
 
 ### 11.	Tulis kesimpulan dari kegiatan praktek kelompok anda.
+
+- Manajemen Akun Pengguna
+  -	Berhasil membuat, melihat, dan menghapus user dalam MySQL.
+
+- Manajemen Hak Akses dan Role
+  -	Berhasil membuat role dan memberikan hak akses (privilege) seperti SELECT, INSERT, CREATE, dan DROP.
+  -	Role berhasil diberikan ke user dan diuji sebelum serta sesudah pemberian role.
+   -	Role juga berhasil dicabut dari user untuk memastikan mereka kembali tanpa hak akses yang diberikan.
+
+- Monitoring Akses dan Aktivitas Pengguna
+  -	Berhasil mengaktifkan general log untuk mencatat aktivitas database.
+  -	Dapat melihat log dari query yang dijalankan seperti SELECT, INSERT, CREATE, dan DROP.
+
+### Kesimpulan Keseluruhan:
+Menunjukkan bagaimana mengelola pengguna, role, dan hak akses dalam MySQL secara efektif, serta bagaimana melakukan monitoring aktivitas database untuk keamanan dan audit.
