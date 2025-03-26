@@ -11,3 +11,4 @@ MySQL adalah sistem manajemen basis data relasional (RDBMS) yang banyak digunaka
 
 ## Solusi/Skenario Aktivitas
 1. Buka website MySQL lalu pilih menu downloads
+   ![Gambar 1](Gambar1.png)
