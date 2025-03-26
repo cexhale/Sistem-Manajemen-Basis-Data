@@ -21,3 +21,9 @@ Dalam sistem basis data, manajemen pengguna (user), peran (role), dan hak akses 
     ```sql
     CREATE USER 'chalimatus'@'localhost' IDENTIFIED BY 'chalimatus';
   -	Output run yaitu 1 querie, 1 succes tanpa adanya error.
+![Gambar 1](Gambar1.jpg)
+  - Code :
+   	```sql
+    CREATE USER 'safira'@'localhost' IDENTIFIED BY 'safira';
+  - Hasil run yaitu 1 querie, 1 succes tanpa adanya error.
+![Gambar 2](Gambar2.jpg)
