@@ -51,3 +51,72 @@ Dalam sistem basis data, manajemen pengguna (user), peran (role), dan hak akses 
   SELECT USER, HOST FROM mysql.user WHERE USER IN ('chalimatus', 'safira', 'sherli');
   ```
   ![Gambar 6](Gambar6.jpg)
+
+### 3. Buat role dengan "role_nama_anda_insert_select" -> role_andi_select_insert
+
+-	Membuat role bernama role_chalimatus_insert_select.
+-	Code :
+  ```sql
+  CREATE ROLE 'role_chalimatus_insert_select';
+  ```
+  ![Gambar 7](Gambar7.jpg)
+
+### 4. Berikan privilege select, insert ke dalam role di atas
+
+-	Memberikan izin SELECT dan INSERT pada seluruh tabel di database_example untuk role role_chalimatus_insert_select.
+-	Code :
+  ```sql
+  GRANT SELECT, INSERT ON database_example.* TO 'role_chalimatus_insert_select';
+  ```
+  ![Gambar 8](Gambar8.jpg)
+  
+### 5. Buat role dengan "role_nama_anda_create_drop" -> role_andi_create_drop
+
+-	Membuat role bernama role_chalimatus_create_drop.
+-	Code :
+  ```sql
+  CREATE ROLE 'role_chalimatus_create_drop';
+  ```
+  ![Gambar 9](Gambar9.jpg)
+  
+### 6. Berikan privilege create, drop kedalam role diatas
+
+-	Memberikan izin CREATE dan DROP pada seluruh tabel di database_example untuk role role_chalimatus_create_drop.
+-	Code :
+  ```sql
+  GRANT CREATE, DROP ON database_example.* TO 'role_chalimatus_create_drop';
+  ```
+  ![Gambar 10](Gambar10.jpg)
+  
+### 7. Berikan 2 user kedalam masing-masing role diatas.
+
+-	Memberikan role role_chalimatus_insert_select kepada chalimatus dan safira.
+-	Code :
+  ```sql
+  GRANT 'role_chalimatus_insert_select' TO 'chalimatus'@'localhost', 'safira'@'localhost';
+  ```
+  ![Gambar 11](Gambar11.jpg)
+
+-	Mengecek kembali daftar user yang memiliki hak akses tertentu.
+-	Code :
+    ```sql
+    SELECT USER, HOST FROM mysql.user WHERE USER IN ('chalimatus', 'safira', 'sherli');
+    ```
+  ![Gambar 12](Gambar12.jpg)
+
+### 8. Lakukan pengujian sebelum dan sesudah user diberikan role.
+
+-	Menampilkan daftar hak akses (privilege) yang dimiliki oleh user chalimatus dan safira.
+-	Code :
+  ```sql
+  SHOW GRANTS FOR 'chalimatus'@'localhost';
+  ```
+  ![Gambar 13](Gambar13.jpg)
+- Code :
+  ```sql
+  SHOW GRANTS FOR 'safira'@'localhost';
+  ```
+  ![Gambar 14](Gambar14.jpg)
+### 9. Lepas role dari user diatas. Sehingga user menjadi tidak memiliki role.
+### 10. Lakukan konfigurasi untuk proses monitoring proses seperti contoh diatas, dan lakukan beberapa kali proses query. Kemudian lihat di log nya dan tampilkan hasilnya.
+### 11.	Tulis kesimpulan dari kegiatan praktek kelompok anda.
