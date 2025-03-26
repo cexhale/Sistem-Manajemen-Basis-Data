@@ -117,6 +117,74 @@ Dalam sistem basis data, manajemen pengguna (user), peran (role), dan hak akses 
   SHOW GRANTS FOR 'safira'@'localhost';
   ```
   ![Gambar 14](Gambar14.jpg)
+
+-	Mengaktifkan peran yang telah diberikan untuk sesi pengguna saat ini.
+-	Code :
+  ```sql
+  SET ROLE 'role_chalimatus_insert_select';
+  ```
+  ![Gambar 15](Gambar15.jpg)
+- Code :
+  ```sql
+  SET ROLE 'role_chalimatus_create_drop';
+  ```
+  ![Gambar 16](Gambar16.jpg)
+
+- Menampilkan kembali hak akses user setelah role diterapkan.
+- Code :
+    ```sql
+    SHOW GRANTS FOR 'chalimatus'@'localhost';
+    ```
+    ![Gambar 17](Gambar17.jpg)
+- Code :
+  ```sql
+  SHOW GRANTS FOR 'safira'@'localhost';
+  ```
+  ![Gambar 18](Gambar18.jpg)
+  
 ### 9. Lepas role dari user diatas. Sehingga user menjadi tidak memiliki role.
+
+-	Menghapus role role_chalimatus_create_drop dari safira dan sherli.
+-	Code :
+  ```sql
+  REVOKE 'role_chalimatus_create_drop' FROM 'safira'@'localhost', 'sherli'@'localhost';
+  ```
+  ![Gambar 19](Gambar19.jpg)
+
+-	Menampilkan hak akses user setellah role di terapkan, dengan code:
+  ```sql
+  SHOW GRANTS FOR chalimatus@'localhost;
+  ```
+  ![Gambar 20](Gambar20.jpg)
+
+-	Mengecek kembali daftar hak akses user setelah role dicabut.
+-	Code :
+  ```sql
+  SHOW GRANTS FOR 'safira'@'localhost';
+  ```
+  ![Gambar 21](Gambar21.jpg)
+
 ### 10. Lakukan konfigurasi untuk proses monitoring proses seperti contoh diatas, dan lakukan beberapa kali proses query. Kemudian lihat di log nya dan tampilkan hasilnya.
+
+-	Mengaktifkan general log MySQL dan mengatur output log ke dalam tabel database MySQL.
+-	Code :
+  ```sql
+  SET GLOBAL general_log = 1;
+  ```
+  ![Gambar 22](Gambar22.jpg)
+-	Code :
+  ```sql
+  SET GLOBAL log_output = 'TABLE';
+  ```
+  ![Gambar 23](Gambar23.jpg)
+
+-	Menampilkan 10 log aktivitas terakhir yang terekam dalam mysql.general_log.
+-	Code :
+  ```sql
+  SELECT * FROM mysql.general_log ORDER BY event_time
+DESC LIMIT 10;
+  ```
+  ![Gambar 24](Gambar24.jpg)
+Output ada beberapa kolom yaitu event_time : menampilan tanggal dan jam; user_host nya yaitu root, localhost serta kode; thread_id yaitu 8; server_id yaitu 1; command_type yaitu query; dan argument yaitu menyesuaikan yang kita insertkan beserta kode.
+
 ### 11.	Tulis kesimpulan dari kegiatan praktek kelompok anda.
