@@ -1,3 +1,16 @@
+# BOTTLENECK PADA MYSQL
+
+## Latar Belakang Pembahasan
+Dalam pengelolaan basis data, sering terjadi bottleneck atau hambatan yang menyebabkan performa database menurun, terutama ketika menangani jumlah data yang besar. Bottleneck ini dapat muncul dalam berbagai bentuk seperti query yang tidak optimal, penggunaan indeks yang kurang efektif, atau penguncian transaksi yang menghambat proses lainnya. Oleh karena itu, optimasi sangat diperlukan agar performa database tetap efisien dan responsif.
+
+## Problem yang Diangkat
+Masalah utama yang diangkat dalam laporan ini adalah:
+1. Bagaimana cara mengoptimalkan eksekusi query agar lebih cepat dan efisien?
+2. Bagaimana cara menambahkan indeks untuk mempercepat pencarian data?
+3. Bagaimana teknik optimasi yang bisa diterapkan pada database transaksi seperti minimarket?
+4. Bagaimana cara menangani pencarian data teks yang lebih efisien?
+
+## Solusi/Skenario Aktivitas (Soal yang Dikerjakan)
 ### 1.	Jalankan setiap langkah dari materi diatas, tuliskan pemahaman anda.
 ```sql
 SELECT * FROM orders WHERE customer_id = 1001;
@@ -109,3 +122,17 @@ SELECT * FROM tr_penjualan_raw WHERE nama_kasir LIKE '%John%';
 SELECT MAX(harga) FROM tr_penjualan_raw WHERE kode_cabang = 'CB001';
 ```
 ![Gambar 16](assets/Gambar16.png)
+
+## Pembahasan
+Setelah menjalankan berbagai teknik optimasi di atas, diperoleh beberapa temuan:
+1. Menambahkan indeks pada kolom yang sering digunakan dalam WHERE dan JOIN dapat mempercepat proses pencarian data secara signifikan.
+2. Penggunaan BETWEEN lebih efisien dibandingkan dengan fungsi YEAR(), karena fungsi agregasi pada WHERE memperlambat kinerja database.
+3. FULLTEXT Index sangat berguna untuk pencarian teks panjang, dibandingkan dengan LIKE '%keyword%', yang memerlukan pemindaian seluruh tabel.
+4. Indeks pada kolom harga meningkatkan efisiensi dalam pencarian nilai maksimum dengan MAX().
+
+## Kesimpulan
+1. Teknik optimasi database, terutama dengan penggunaan indeks, dapat secara signifikan meningkatkan performa query.
+2. Penggunaan indeks harus disesuaikan dengan pola akses data agar tidak membebani penyimpanan dan performa database.
+3. Query yang memanfaatkan indeks dengan baik dapat mengurangi waktu eksekusi secara drastis, terutama pada dataset yang besar.
+4. Pencarian teks lebih optimal menggunakan FULLTEXT dibandingkan dengan LIKE '%keyword%'.
+5. Pemilihan metode optimasi yang tepat bergantung pada karakteristik tabel dan pola query yang sering digunakan.
