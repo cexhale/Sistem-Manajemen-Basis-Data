@@ -1,8 +1,22 @@
+# PERFORMANCE
+
+## Latar Belakang
+Dalam pengelolaan basis data, performa eksekusi query menjadi faktor penting yang mempengaruhi efisiensi sistem. Salah satu cara meningkatkan performa adalah dengan penggunaan indeks yang tepat. Indeks memungkinkan database untuk mengambil data lebih cepat dibandingkan dengan pemindaian tabel penuh. Oleh karena itu, laporan ini membahas implementasi indeks dan pengaruhnya terhadap kecepatan eksekusi query.
+
+## Problem yang Diangkat
+Masalah utama dalam laporan ini adalah:
+1. Bagaimana proses impor data ke dalam MySQL?
+2. Bagaimana cara menganalisis performa eksekusi query dengan dan tanpa indeks?
+3. Bagaimana pengaruh indeks terhadap kecepatan eksekusi query dalam basis data besar?
+4. Bagaimana penggunaan indeks composite dan foreign key dapat membantu optimalisasi pencarian data?
+
+## Solusi / Skenario Aktivitas
 ### 1.	Lakukan semua tahapan diatas, dan jalankan pada database anda. Tambahkan screenshot hasil dari setiap Langkah yang anda lakukan.
   - Jalankan query
     ```sql
     SELECT * FROM employee
     ```
+    ![Gambar 1](assets/Gambar1.png)
     - Penjelasan:
       - Query ini digunakan untuk menampilkan semua data dari tabel employee. Tanda bintang (*) digunakan untuk menampilkan seluruh kolom yang ada di tabel tersebut.
  
@@ -10,6 +24,7 @@
     ```sql
     EXPLAIN SELECT * FROM employee WHERE first_name = ‘Georgi’
     ```
+    ![Gambar 2](assets/Gambar2.png)
     - Penjelasan:
       - Perintah EXPLAIN digunakan untuk menganalisis bagaimana MySQL menjalankan query. Hasil dari EXPLAIN akan menunjukkan apakah query melakukan Full Table Scan (memeriksa seluruh tabel) atau menggunakan index. Pada tahap ini, MySQL melakukan pemindaian penuh pada tabel karena belum ada index yang ditambahkan.
  
@@ -19,6 +34,7 @@ Dari hasil query explain terlihat, pada kolom key dan key len, tidak ada nama in
     ```sql
     ALTER TABLE employee ADD INDEX idx_full_name (first_name, last_name)
     ```
+    ![Gambar 3](assets/Gambar3.png)
     - Penjelasan:
       - Perintah ini menambahkan composite index pada kolom first_name dan last_name. Index ini membantu mempercepat pencarian data yang menggunakan kedua kolom tersebut dalam klausa WHERE.
  
@@ -28,6 +44,7 @@ Dari hasil query explain terlihat, pada kolom key dan key len, tidak ada nama in
     WHERE first_name = ‘Georgi’
     AND last_name = ‘Bahr’
     ```
+    ![Gambar 4](assets/Gambar4.png)
     - Penjelasan:
       - Setelah index ditambahkan, query menggunakan index untuk mencari data, sehingga proses pencarian menjadi lebih cepat. Hal ini terlihat pada kolom key dan possible_keys pada hasil EXPLAIN yang menunjukkan bahwa index digunakan.
  
@@ -38,6 +55,7 @@ Sekarang bisa kita lihat bahwa query yang kita jalankan tidak lagi scaning penuh
     ```sql
     ALTER TABLE dept_manager ADD COLUMN nama_departemen VARCHAR(100);
     ```
+    ![Gambar 5](assets/Gambar5.png)
     - Penjelasan:
       - Perintah ini digunakan untuk menambahkan kolom baru dengan nama nama_departemen bertipe VARCHAR(100) pada tabel dept_manager.
  
@@ -45,6 +63,7 @@ Sekarang bisa kita lihat bahwa query yang kita jalankan tidak lagi scaning penuh
     ```sql
     UPDATE dept_manager SET nama_departemen = 'HR Departement' WHERE dept_no = 'd001';
     ```
+    ![Gambar 6](assets/Gambar6.png)
     - Penjelasan:
       - Query ini digunakan untuk mengisi kolom nama_departemen  pada tabel dept_manager dengan nilai HR Departement pada baris yang memiliki dept_no = 'd001'.
 
@@ -53,6 +72,7 @@ Sekarang bisa kita lihat bahwa query yang kita jalankan tidak lagi scaning penuh
     ```sql
     ALTER TABLE dept_emp ADD COLUMN nama_departemen VARCHAR(100);
     ```
+    ![Gambar 7](assets/Gambar7.png)
     - Penjelasan:
       - Perintah ini menambahkan kolom baru nama_departemen pada tabel dept_emp.
 
@@ -60,6 +80,7 @@ Sekarang bisa kita lihat bahwa query yang kita jalankan tidak lagi scaning penuh
     ```sql
     UPDATE dept_emp SET nama_departemen = 'Marketing' WHERE dept_no = 'd002';
     ```
+    ![Gambar 8](assets/Gambar8.png)
     - Penjelasan:
       - Query ini memperbarui kolom nama_departemen pada tabel dept_emp dengan nilai Marketing untuk data dengan dept_no = 'd002'.
  
@@ -74,6 +95,7 @@ Sekarang bisa kita lihat bahwa query yang kita jalankan tidak lagi scaning penuh
     ORDER BY s.amount DESC
     LIMIT 1;
     ```
+    ![Gambar 9](assets/Gambar9.png)
     - Penjelasan:
       - Query ini digunakan untuk menampilkan nama dan gaji tertinggi pada departemen dengan kode d006. Penjelasan:
         - JOIN  digunakan  untuk  menggabungkan  tabel  employee,  salary,  dan
@@ -87,6 +109,7 @@ dept_emp.
     ```sql
     ALTER TABLE employee ADD COLUMN umur INT;
     ```
+    ![Gambar 10](assets/Gambar10.png)
     - Penjelasan:
       - Perintah ini menambahkan kolom baru umur bertipe integer pada tabel employee.
 
@@ -94,6 +117,7 @@ dept_emp.
     ```sql
     UPDATE employee SET umur = YEAR(CURDATE()) - YEAR(birth_date);
     ```
+    ![Gambar 11](assets/Gambar11.png)
     - Penjelasan:
       - Perintah ini menghitung umur berdasarkan selisih tahun saat ini dengan tahun lahir dari kolom birth_date.
  
@@ -102,10 +126,12 @@ dept_emp.
     ```sql
     ALTER TABLE employee ADD INDEX idx_nama (first_name, last_name);
     ```
+    ![Gambar 12](assets/Gambar12.png)
   - Query:
     ```sql
     ALTER TABLE dept_emp ADD CONSTRAINT fk_emp FOREIGN KEY (emp_no) REFERENCES employee(emp_no);
     ```
+    ![Gambar 13](assets/Gambar13.png)
     - Penjelasan:
       - Index ini digunakan untuk mempercepat pencarian data pada kolom first_name dan last_name, sedangkan foreign key digunakan untuk menjaga hubungan data antar tabel.
 
@@ -113,6 +139,7 @@ dept_emp.
   ```sql
   EXPLAIN SELECT * FROM employee WHERE first_name = 'Georgi';.
   ```
+  ![Gambar 14](assets/Gambar14.png)
 
 ### 8.	Lakukan pengujian dari query berikut. Apakah ada perbedaan sebelum dan sesudah ditambahkan index. Query untuk menguji:
   ```sql
@@ -139,6 +166,7 @@ dept_emp.
         ```sql
         ALTER TABLE employee ADD INDEX idx_nama (first_name, last_name);
         ```
+        ![Gambar 15](assets/Gambar15.png)
     - Jalankan query diatas sebanyak 10x. catet waktunya setiap kali dijalankan.
       | No | Waktu (sec) |
       |----|------------|
@@ -167,3 +195,33 @@ Berdasarkan hasil pengujian waktu eksekusi query sebelum dan sesudah penambahan 
 Dari hasil tersebut, terlihat bahwa setelah menambahkan index composite pada kolom first_name dan last_name, terjadi peningkatan performa dengan selisih rata-rata waktu eksekusi sebesar 0.007 detik lebih cepat.
 
 Meskipun selisih waktu terlihat kecil, namun pada database dengan jumlah data yang besar, penggunaan index sangat membantu mempercepat proses pencarian data dan mengurangi beban sistem. Hal ini membuktikan bahwa penggunaan index pada database sangat efektif untuk meningkatkan efisiensi query.
+
+## Pembahasan
+Beberapa eksperimen yang dilakukan:
+1. Analisis Query Tanpa Indeks
+Query ```SELECT * FROM employee WHERE first_name = 'Georgi'``` dilakukan tanpa indeks. Hasil EXPLAIN menunjukkan bahwa MySQL melakukan pemindaian tabel penuh (Full Table Scan), yang kurang efisien.
+
+2. Menambahkan Indeks
+Composite index ditambahkan dengan perintah:
+```ALTER TABLE employee ADD INDEX idx_nama (first_name, last_name);```
+Setelah indeks ditambahkan, query yang sama diuji kembali, dan hasil EXPLAIN menunjukkan bahwa MySQL menggunakan indeks untuk pencarian, yang meningkatkan efisiensi.
+
+3. Perbandingan Waktu Eksekusi Query
+Query ```SELECT * FROM employee WHERE first_name = 'Georgi' AND last_name = 'Bahr'``` dijalankan sebanyak 10 kali sebelum dan sesudah indeks ditambahkan.
+
+- Hasil:
+  - Sebelum indeks: rata-rata 0.120 detik.
+  - Sesudah indeks: rata-rata 0.113 detik.
+  - Selisih waktu eksekusi menunjukkan peningkatan performa.
+
+4. Penambahan Foreign Key
+Menambahkan foreign key pada tabel dept_emp untuk menjaga integritas referensial:
+```ALTER TABLE dept_emp ADD CONSTRAINT fk_emp FOREIGN KEY (emp_no) REFERENCES employee(emp_no);```
+
+## Kesimpulan
+Berdasarkan hasil pengujian:
+1. Indeks mempercepat eksekusi query dengan mengurangi pemindaian tabel penuh.
+2. Penggunaan composite index pada kolom yang sering digunakan dalam pencarian dapat meningkatkan performa secara signifikan.
+3. Penambahan foreign key membantu menjaga integritas data antar tabel.
+
+Meskipun peningkatan performa dalam percobaan ini tampak kecil, efeknya akan lebih signifikan pada database dengan jumlah data yang besar.
