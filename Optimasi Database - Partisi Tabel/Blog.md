@@ -19,7 +19,7 @@
     PARTITION p4 VALUES LESS THAN (2024)
     );
     ```
-    ![Gambar 1](Gambar1.png)
+    ![Gambar 1](assets/Gambar1.png)
 
     ```sql
     SELECT * FROM transactions WHERE transaction_date BETWEEN '2023-01-01' AND '2023-12-31';
@@ -40,7 +40,7 @@
     PARTITION p_other VALUES IN (4,5,6,7) -- Wilayah lainnya
     );
     ```
-    ![Gambar 2](Gambar2.png)
+    ![Gambar 2](assets/Gambar2.png)
     
 - Menambahkan Data ke Tabel
   - Query:
@@ -52,7 +52,7 @@
     ('2024-03-04', 300000, 5), -- Wilayah Lainnya (p_other)
     ('2024-03-05', 450000, 6); -- Wilayah Lainnya (p_other)
     ```
-    ![Gambar 3](Gambar3.png)
+    ![Gambar 3](assets/Gambar3.png)
     
 - Mengecek Partisi yang Digunakan
   - Query:
@@ -61,14 +61,14 @@
     INFORMATION_SCHEMA.PARTITIONS
     WHERE TABLE_NAME = 'transactions';
     ```
-    ![Gambar 4](Gambar4.png)
+    ![Gambar 4](assets/Gambar4.png)
     
 - Menjalankan Query dengan Optimasi Partisi
   - Query:
     ```sql
     SELECT * FROM transactions WHERE region_id = 2;
     ```
-    ![Gambar 5](Gambar5.png)
+    ![Gambar 5](assets/Gambar5.png)
 
 - Menambahkan Partisi Baru
   - Jika kita ingin menambahkan wilayah baru, misalnya region_id = 8 untuk Semarang, kita bisa menambahkan partisi baru:
@@ -78,7 +78,7 @@
       ALTER TABLE transactions
       ADD PARTITION (PARTITION p_semarang VALUES IN (8));
       ```
-      ![Gambar 6](Gambar6.png)
+      ![Gambar 6](assets/Gambar6.png)
       
 - Menghapus Partisi Lama
   - Jika kita ingin menghapus partisi untuk wilayah yang sudah tidak digunakan, misalnya p_bandung:
@@ -87,7 +87,7 @@
       ```sql
       ALTER TABLE transactions DROP PARTITION p_bandung;
       ```
-      ![Gambar 7](Gambar7.png)
+      ![Gambar 7](assets/Gambar7.png)
 
 ### 2.	Studi kasus mengacu pada database minimarket.
 
@@ -117,7 +117,7 @@
     PARTITION p7 VALUES LESS THAN (2015)
     );
     ```
-    ![Gambar 8](Gambar8.png)
+    ![Gambar 8](assets/Gambar8.png)
 
 - Isikan tabel tr_penjualan_partisi.
 
@@ -128,7 +128,7 @@
     SELECT	tgl_transaksi,	kode_cabang,	kode_kasir,	kode_item,	kode_produk, jumlah_pembelian, nama_kasir, harga
     FROM tr_penjualan )
     ```
-    ![Gambar 9](Gambar9.png)
+    ![Gambar 9](assets/Gambar9.png)
 
   - Script insert utk tahun 2009
 
@@ -138,7 +138,7 @@
     FROM tr_penjualan
     )
     ```
-    ![Gambar 10](Gambar10.png)
+    ![Gambar 10](assets/Gambar10.png)
 
   - Insert untuk tahun 2010
     ```sql
@@ -149,7 +149,7 @@
     FROM tr_penjualan
     WHERE YEAR(tgl_transaksi) = 2008;
     ```
-    ![Gambar 11](Gambar11.png)
+    ![Gambar 11](assets/Gambar11.png)
 
   - Insert untuk tahun 2011
     ```sql
@@ -160,7 +160,7 @@
     FROM tr_penjualan
     WHERE YEAR(tgl_transaksi) = 2008;
     ```
-    ![Gambar 12](Gambar12.png)
+    ![Gambar 12](assets/Gambar12.png)
  
   - Insert untuk tahun 2012
     ```sql
@@ -171,7 +171,7 @@
     FROM tr_penjualan
     WHERE YEAR(tgl_transaksi) = 2008;
     ```
-    ![Gambar 13](Gambar13.png)
+    ![Gambar 13](assets/Gambar13.png)
 
   - Insert untuk tahun 2013
     ```sql
@@ -182,7 +182,7 @@
     FROM tr_penjualan
     WHERE YEAR(tgl_transaksi) = 2008;
     ```
-    ![Gambar 14](Gambar14.png)
+    ![Gambar 14](assets/Gambar14.png)
 
   - Insert untuk tahun 2014
     ```sql
@@ -193,7 +193,7 @@
     FROM tr_penjualan
     WHERE YEAR(tgl_transaksi) = 2008;
     ```
-    ![Gambar 15](Gambar15.png)
+    ![Gambar 15](assets/Gambar15.png)
 
 - Lakukan penambahan data dummy di tr_penjualan_partisi dengan susunan
   - Tahun 2008 =
@@ -204,7 +204,7 @@
     ('2008-01-15', 'CB001', 'KSR01', 'IT001', 'PRD001', 2, 'Kasir A', 10000),
     ('2008-03-22', 'CB002', 'KSR02', 'IT002', 'PRD002', 3, 'Kasir B', 15000);
     ```
-    ![Gambar 16](Gambar16.png)
+    ![Gambar 16](assets/Gambar16.png)
 
   - Tahun 2010 =
     ```sql
@@ -214,7 +214,7 @@
     ('2010-05-10', 'CB003', 'KSR03', 'IT003', 'PRD003', 5, 'Kasir C', 20000),
     ('2010-07-18', 'CB004', 'KSR04', 'IT004', 'PRD004', 1, 'Kasir D', 25000);
     ```
-    ![Gambar 17](Gambar17.png)
+    ![Gambar 17](assets/Gambar17.png)
 
   - Tahun 2011 =
     ```sql
@@ -224,7 +224,7 @@
     ('2011-02-14', 'CB005', 'KSR05', 'IT005', 'PRD005', 4, 'Kasir E', 30000),
     ('2011-08-30', 'CB006', 'KSR06', 'IT006', 'PRD006', 6, 'Kasir F', 35000);
     ```
-    ![Gambar 18](Gambar18.png)
+    ![Gambar 18](assets/Gambar18.png)
 
   - Tahun 2012 =
     ```sql
@@ -233,7 +233,7 @@
     ('2012-03-21', 'CB007', 'KSR07', 'IT007', 'PRD007', 3, 'Kasir G', 12000),
     ('2012-11-05', 'CB008', 'KSR08', 'IT008', 'PRD008', 7, 'Kasir H', 22000);
     ```
-    ![Gambar 19](Gambar19.png)
+    ![Gambar 19](assets/Gambar19.png)
 
   - Tahun 2013 =
     ```sql
@@ -243,7 +243,7 @@
     ('2013-06-14', 'CB009', 'KSR09', 'IT009', 'PRD009', 2, 'Kasir I', 18000),
     ('2013-09-28', 'CB010', 'KSR10', 'IT010', 'PRD010', 5, 'Kasir J', 28000);
     ```
-    ![Gambar 20](Gambar20.png)
+    ![Gambar 20](assets/Gambar20.png)
 
   - Tahun 2014 =
     ```sql
@@ -253,7 +253,7 @@
     ('2014-04-12', 'CB011', 'KSR11', 'IT011', 'PRD011', 4, 'Kasir K', 32000),
     ('2014-12-19', 'CB012', 'KSR12', 'IT012', 'PRD012', 6, 'Kasir L', 42000);
     ```
-    ![Gambar 21](Gambar21.png)
+    ![Gambar 21](assets/Gambar21.png)
 
 - Pengisian tabel tr_penjualan_partisi disesuai dengan kapasitas LAPTOP masingmasing. Makin banyak data, makin terlihat efek dari partisi table.
 
@@ -263,7 +263,7 @@
   FROM INFORMATION_SCHEMA.PARTITIONS
   WHERE TABLE_NAME = 'tr_penjualan_partisi';
   ```
-  ![Gambar 22](Gambar22.png)
+  ![Gambar 22](assets/Gambar22.png)
  
 ### 4.	Buat tabel tr_penjualan_raw yang isinya sama persis dengan tabel tr_penjualan_partisi. Yang membedakan hanya struktur tabel nya saja.
 - Tr_penjualan_raw = struktur biasa
@@ -271,7 +271,7 @@
   ```sql
   CREATE TABLE tr_penjualan_raw LIKE tr_penjualan_partisi;
   ```
-  ![Gambar 23](Gambar23.png)
+  ![Gambar 23](assets/Gambar23.png)
  
 ### 5.	Pengujian table
 - Jalankan query berikut dengan perulangan 10x. lakukan pencatatan waktu running setiap query. Dan ambil rata-ratanya.
