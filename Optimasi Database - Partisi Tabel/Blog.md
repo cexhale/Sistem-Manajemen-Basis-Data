@@ -1,3 +1,12 @@
+# OPTIMASI DATABASE DENGAN PARTISI TABEL
+
+## Latar Belakang Pembahasan
+Dalam manajemen basis data, performa kueri menjadi faktor penting terutama ketika menangani volume data yang besar. Salah satu teknik optimasi yang umum digunakan adalah partisi tabel, di mana data dibagi ke dalam beberapa segmen yang lebih kecil berdasarkan kriteria tertentu. Teknik ini bertujuan untuk meningkatkan efisiensi pencarian, pemrosesan data, dan penggunaan sumber daya.
+
+## Problem yang Diangkat
+Permasalahan utama dalam dokumen ini adalah bagaimana mengoptimalkan performa database dengan teknik partisi tabel. Basis data yang besar sering mengalami kinerja yang menurun saat melakukan pencarian atau manipulasi data. Oleh karena itu, diperlukan strategi yang tepat untuk meningkatkan efisiensi akses data tanpa mengorbankan integritas dan keakuratan informasi.
+
+## Solusi/Skenario Aktivitas (Soal yang Dikerjakan)
 ### 1.	Jalankan semua contoh script diatas sampai anda benar-benar memahami konsep partisi, cara kerja partisi, manfaat partisi tabel.
 
   - Query:
@@ -368,3 +377,16 @@ SELECT * FROM tr_penjualan_partisi WHERE kode_cabang = 'CB003';
   - Keuntungan partisi tabel lebih terasa jika tabel memiliki jutaan hingga miliaran baris.
   - Pada dataset kecil, MySQL masih dapat menangani query dengan baik tanpa partisi, sehingga peningkatan performa belum signifikan.
 
+## Pembahasan
+Hasil eksperimen menunjukkan bahwa penggunaan partisi tabel memberikan peningkatan dalam waktu eksekusi kueri, terutama untuk pencarian data dalam skala besar. Beberapa jenis partisi yang diuji antara lain:
+
+Partisi Berbasis Rentang (Range Partitioning): Data dibagi berdasarkan interval nilai tertentu, misalnya berdasarkan tahun transaksi.
+
+Partisi Berbasis Daftar (List Partitioning): Data dikelompokkan berdasarkan kategori tertentu, misalnya berdasarkan wilayah atau jenis produk.
+
+Partisi Berbasis Hash (Hash Partitioning): Data didistribusikan ke partisi secara merata menggunakan fungsi hash, cocok untuk data dengan distribusi tidak merata.
+
+Setiap jenis partisi memiliki kelebihan dan kekurangannya masing-masing tergantung pada pola akses data.
+
+## Kesimpulan
+Teknik partisi tabel terbukti dapat meningkatkan performa basis data, terutama dalam hal kecepatan eksekusi kueri. Namun, implementasi partisi harus dilakukan dengan pertimbangan matang sesuai dengan struktur dan pola akses data agar manfaatnya dapat maksimal.
