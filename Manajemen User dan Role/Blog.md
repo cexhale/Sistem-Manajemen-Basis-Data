@@ -20,16 +20,19 @@ Dalam sistem basis data, manajemen pengguna (user), peran (role), dan hak akses 
   CREATE USER 'chalimatus'@'localhost' IDENTIFIED BY 'chalimatus';
   ```
   ![Gambar 1](assets/Gambar1.jpg)
+  
 - Code :
   ```sql
   CREATE USER 'safira'@'localhost' IDENTIFIED BY 'safira';
   ```
   ![Gambar 2](assets/Gambar2.jpg)
+  
 - Code :
   ```sql
   CREATE USER 'sherli'@'localhost' IDENTIFIED BY 'sherli';
   ```
   ![Gambar 3](assets/Gambar3.jpg)
+  
 -	Menampilkan daftar user beserta host yang diizinkan untuk mengakses database.
 - Code :
   ```sql
