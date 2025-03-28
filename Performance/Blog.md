@@ -98,8 +98,7 @@ Sekarang bisa kita lihat bahwa query yang kita jalankan tidak lagi scaning penuh
     ![Gambar 9](assets/Gambar9.png)
     - Penjelasan:
       - Query ini digunakan untuk menampilkan nama dan gaji tertinggi pada departemen dengan kode d006. Penjelasan:
-        - JOIN  digunakan  untuk  menggabungkan  tabel  employee,  salary,  dan
-dept_emp.
+        - JOIN  digunakan  untuk  menggabungkan  tabel  employee,  salary,  dan dept_emp.
         - Kondisi WHERE digunakan untuk memfilter data berdasarkan departemen.
         - ORDER BY DESC digunakan untuk mengurutkan gaji dari yang tertinggi.
         - LIMIT 1 hanya menampilkan satu data dengan gaji tertinggi.
@@ -127,6 +126,7 @@ dept_emp.
     ALTER TABLE employee ADD INDEX idx_nama (first_name, last_name);
     ```
     ![Gambar 12](assets/Gambar12.png)
+    
   - Query:
     ```sql
     ALTER TABLE dept_emp ADD CONSTRAINT fk_emp FOREIGN KEY (emp_no) REFERENCES employee(emp_no);
@@ -167,6 +167,7 @@ dept_emp.
         ALTER TABLE employee ADD INDEX idx_nama (first_name, last_name);
         ```
         ![Gambar 15](assets/Gambar15.png)
+        
     - Jalankan query diatas sebanyak 10x. catet waktunya setiap kali dijalankan.
       | No | Waktu (sec) |
       |----|------------|
