@@ -80,7 +80,7 @@ MySQL adalah sistem manajemen basis data relasional (RDBMS) yang banyak digunaka
   - Ketik perintah SHOW VARIABLES LIKE ‘port’; di command prompt mysql untuk mengecek port yang sedang digunakan lalu tekan enter dan hasilnya akan menunjukkan port saat ini (biasanya 3306). Lalu tutup mysql dengan perintah EXIT; dan enter
     ![Gambar 14](assets/Gambar14.png)
   - Buka file my.ini menggunakan vscode, ganti port menjadi 3309
-    ![Gambar 15](assets/Gambar15.png)
+    ![Gambar 15](assets/Gambar15.PNG)
   - Buka cmd administrator lalu ketikkan net stop mysql80 dan net start mysql80 seperti pada gambar
     ![Gambar 16](assets/Gambar16.png)
     - Sesudah
@@ -90,7 +90,7 @@ MySQL adalah sistem manajemen basis data relasional (RDBMS) yang banyak digunaka
   - Cek size
     ![Gambar 18](assets/Gambar18.png)
   - Buka File “C:\ProgramData\MySQL\MySQL Server 8.0\my.ini” dan rubah innodb_buffer_pool_size. Karena ram saya 4 gb jadi 25% dari 4 GB adalah 1GB.
-    ![Gambar 19](assets/Gambar19.png)
+    ![Gambar 19](assets/Gambar19.PNG)
   - Cek di CMD
     ![Gambar 20](assets/Gambar20.png)
   - Restart MySQL
