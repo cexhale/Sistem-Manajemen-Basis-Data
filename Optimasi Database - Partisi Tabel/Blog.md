@@ -81,7 +81,6 @@ Permasalahan utama dalam dokumen ini adalah bagaimana mengoptimalkan performa da
 
 - Menambahkan Partisi Baru
   - Jika kita ingin menambahkan wilayah baru, misalnya region_id = 8 untuk Semarang, kita bisa menambahkan partisi baru:
-
     - Query:
       ```sql
       ALTER TABLE transactions
@@ -91,7 +90,6 @@ Permasalahan utama dalam dokumen ini adalah bagaimana mengoptimalkan performa da
       
 - Menghapus Partisi Lama
   - Jika kita ingin menghapus partisi untuk wilayah yang sudah tidak digunakan, misalnya p_bandung:
-
     - Query:
       ```sql
       ALTER TABLE transactions DROP PARTITION p_bandung;
@@ -102,7 +100,6 @@ Permasalahan utama dalam dokumen ini adalah bagaimana mengoptimalkan performa da
 
 ### 3.	Pada tabel tr_penjualan, lakukan scenario sebagai berikut:
 - Redesaian tabel tr_penjualan, tambahkan partisi pada tabel tersebut. Sehingga ada tabel baru tr_penjualan_partisi
-
   - Query:
     ```sql
     CREATE TABLE tr_penjualan_partisi (
@@ -129,9 +126,7 @@ Permasalahan utama dalam dokumen ini adalah bagaimana mengoptimalkan performa da
     ![Gambar 8](assets/Gambar8.png)
 
 - Isikan tabel tr_penjualan_partisi.
-
   - Script insert utk tahun 2008:
- 
     ```sql
     INSERT	INTO	tr_penjualan_partisi	(tgl_transaksi,	kode_cabang,	kode_kasir, kode_item, kode_produk, jumlah_pembelian, nama_kasir, harga) (
     SELECT	tgl_transaksi,	kode_cabang,	kode_kasir,	kode_item,	kode_produk, jumlah_pembelian, nama_kasir, harga
@@ -140,7 +135,6 @@ Permasalahan utama dalam dokumen ini adalah bagaimana mengoptimalkan performa da
     ![Gambar 9](assets/Gambar9.png)
 
   - Script insert utk tahun 2009
-
     ```sql
     INSERT	INTO	tr_penjualan_partisi	(tgl_transaksi,	kode_cabang,	kode_kasir, kode_item, kode_produk, jumlah_pembelian, nama_kasir, harga) (
     SELECT	DATE_ADD(tgl_transaksi,	INTERVAL	1	YEAR),	kode_cabang, kode_kasir, kode_item, kode_produk, jumlah_pembelian, nama_kasir, harga
@@ -284,7 +278,6 @@ Permasalahan utama dalam dokumen ini adalah bagaimana mengoptimalkan performa da
  
 ### 5.	Pengujian table
 - Jalankan query berikut dengan perulangan 10x. lakukan pencatatan waktu running setiap query. Dan ambil rata-ratanya.
-
   ```sql
   SELECT * FROM tr_penjualan_raw
   WHERE tgl_transaksi > DATE('2010-08-01')
@@ -324,7 +317,6 @@ Permasalahan utama dalam dokumen ini adalah bagaimana mengoptimalkan performa da
   | **Rata-rata** | **0.3487** |
 
 ### 6.	Lakukan pengujian juga utk kolom lain. Dengan cara menjalankan query yang where clause nya bukan tgl_transaksi. Catat waktunya. Jelaskan Hasil yang anda peroleh??
-
 ```sql
 SELECT * FROM tr_penjualan_raw WHERE kode_cabang = 'CB003';
 ```
