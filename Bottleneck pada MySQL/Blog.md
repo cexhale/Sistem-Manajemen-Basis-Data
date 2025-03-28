@@ -51,7 +51,7 @@ SELECT id, nama, email FROM users;
  
   -	Indeks Multi-Kolom untuk Query yang Melibatkan Beberapa Kolom
     ```sql
-    Query: CREATE INDEX idx_multi ON orders(customer_id, status);
+    CREATE INDEX idx_multi ON orders(customer_id, status);
     ```
     ![Gambar 6](assets/Gambar6.png)
  
